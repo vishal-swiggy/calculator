@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+package calculator;
+
+option go_package = "calculator/protobuf";
+
+message SumIn {
+  double in1 = 1;
+  double in2 = 2;
+}
+
+message SumOut {
+  double out = 1;
+}
+
+message PrimeNumbersIn {
+  int64 in = 1;
+}
+
+message PrimeNumbersOut {
+  int64 out = 1;
+}
+
+message ComputeAverageIn {
+  int64 in = 1;
+}
+
+message ComputeAverageOut {
+  int64 out = 1;
+}
+
+message FindMaxNumberIn {
+  int64 in  = 1;
+}
+
+message FindMaxNumberOut {
+  int64 out = 1;
+}
+
+service CalculatorService{
+
+  rpc Sum(SumIn) returns (SumOut) {};
+
+  rpc PrimeNumbers(PrimeNumbersIn) returns (stream PrimeNumbersOut) {};
+
+  rpc ComputeAverage(stream ComputeAverageIn) returns (ComputeAverageOut) {};
+
+  rpc FindMaxNumber(stream FindMaxNumberIn) returns (stream FindMaxNumberOut) {};
+}
